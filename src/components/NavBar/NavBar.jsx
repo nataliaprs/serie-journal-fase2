@@ -1,40 +1,32 @@
-import { AppBar, Toolbar, Button, Typography } from "@mui/material";
+import { AppBar, Toolbar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./NavBar.css";
 
-/**
- * Navbar estilizada com Material UI.
- * Links:
- * - Home
- * - Sobre
- * - Lista de Séries
- * - Cadastrar Série
- */
 export default function NavBar() {
   return (
-    <AppBar position="static" color="secondary">
-      <Toolbar style={{ display: "flex", gap: 20 }}>
+    <AppBar position="fixed" className="navbar">
+      <Toolbar className="navbar-toolbar">
+        <div className="navbar-links">
 
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Série Journal
-        </Typography>
+          <Button className="nav-btn" component={Link} to="/">
+            Home
+          </Button>
 
-        <Button color="inherit" component={Link} to="/">
-          Home
-        </Button>
+          <Button className="nav-btn" component={Link} to="/sobre">
+            Sobre
+          </Button>
 
-        <Button color="inherit" component={Link} to="/sobre">
-          Sobre
-        </Button>
+          <Button className="nav-btn" component={Link} to="/lista">
+            Lista
+          </Button>
 
-        <Button color="inherit" component={Link} to="/lista">
-          Lista
-        </Button>
+          <Button className="nav-btn" component={Link} to="/cadastrar">
+            Cadastrar
+          </Button>
 
-        <Button color="inherit" component={Link} to="/cadastrar">
-          Cadastrar
-        </Button>
-
+        </div>
       </Toolbar>
     </AppBar>
   );
 }
+

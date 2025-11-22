@@ -1,45 +1,38 @@
 .lista-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-.lista-item {
-  background: #ffe6f2;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+.serie-card {
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.serie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.serie-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.serie-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.botoes {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.lista-info p {
-  margin: 3px 0;
-}
-
-.lista-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.btn-editar,
-.btn-excluir {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-}
-
-.btn-editar {
-  background: #9b59b6;
-  color: white;
-}
-
-.btn-excluir {
-  background: #e74c3c;
-  color: white;
+  margin-top: 15px;
 }

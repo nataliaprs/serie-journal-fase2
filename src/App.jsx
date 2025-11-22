@@ -7,11 +7,25 @@ import Lista from "./pages/Lista";
 import Cadastrar from "./pages/Cadastrar";
 import Editar from "./pages/Editar";
 
+// Importa o hook responsável por integrar com a API via Axios
+import { useSeries } from "./hooks/useSeries";
+
 /**
  * Componente principal que define todas as rotas da aplicação.
- * A Navbar aparece em todas as páginas e o conteúdo muda conforme a rota.
+ * Aqui chamamos o hook useSeries, que controla TODO o CRUD (GET, POST, PUT, DELETE).
+ * O estado e as funções são repassados para as páginas via props.
  */
 function App() {
+  const {
+    series,
+    loading,
+    erro,
+    addSerie,
+    updateSerie,
+    removeSerie,
+    fetchSeries
+  } = useSeries();
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -20,15 +34,44 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
 
-        <Route path="/lista" element={<Lista />} />
+        {/* Lista recebe as séries e funções da API */}
+        <Route
+          path="/lista"
+          element={
+            <Lista
+              series={series}
+              loading={loading}
+              erro={erro}
+              removeSerie={removeSerie}
+            />
+          }
+        />
 
-        <Route path="/cadastrar" element={<Cadastrar />} />
+        {/* Cadastrar recebe addSerie */}
+        <Route
+          path="/cadastrar"
+          element={
+            <Cadastrar
+              addSerie={addSerie}
+            />
+          }
+        />
 
-        {/* Nova rota obrigatória da Fase 2 */}
-        <Route path="/editar/:id" element={<Editar />} />
+        {/* Editar recebe updateSerie + fetchSeries para carregar o item */}
+        <Route
+          path="/editar/:id"
+          element={
+            <Editar
+              series={series}
+              updateSerie={updateSerie}
+              fetchSeries={fetchSeries}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+

@@ -1,177 +1,79 @@
+/* CINE THEME — Estética Clean + Movie Day */
+
 :root {
-  --bg-top: #ffffff;       /* Margem superior branca */
-  --bg: #fff7fa;           /* Fundo dos cards e páginas */
-  --text: #a84c73;         /* Texto principal */
-  --text-secondary: #7a5a7f; /* Texto secundário */
-  --link: #d56b9a;         /* Botões e links */
-  --link-hover: #f7a8c4;   /* Hover rosa suave */
-  --card-bg: #fff7fa;      /* Card fofo */
-  --border: #f3cde1;       /* Bordas dos cards e inputs */
-  --btn-bg: #d56b9a;       /* Botões */
-  --btn-hover: #f7a8c4;    /* Hover botões */
+  --bg-dark: #000;
+  --bg-soft: #121212;
+  --text-light: #ffffff;
+  --text-dark: #1a1a1a;
+  --accent: #ff4d4d;
 }
 
+/* Fundo geral */
 html, body, #root {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: var(--bg-top);
-  color: var(--text);
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  color: var(--text-light);
+
+  /* IMAGEM DE FUNDO */
+  background-image: url(/src/assets/background-movie.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-/* NAVBAR */
-nav {
-  padding: 16px;
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  background-color: var(--bg-top);
-}
-
-nav a {
-  padding: 8px 16px;
-  border-radius: 8px;
-  background-color: #f5f5f5; /* cinza clarinho */
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.25s, color 0.25s;
-}
-
-nav a:hover {
-  background-color: var(--link-hover);
-  color: #ffffff;
-}
-
-/* MAIN CONTAINER */
+/* Conteúdos com fundo */
 main {
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 80vh;
-  background-color: var(--bg-top);
+  padding-top: 90px; /* evita topo colado na navbar */
 }
 
-/* CARDS */
+/* Página centralizada */
+.page-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Cards (para formularios, lista, etc) */
 .card {
-  background-color: var(--card-bg);
+  background: rgba(0, 0, 0, 0.65);
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  border: 2px solid var(--border);
-  padding: 40px 30px;
-  max-width: 600px;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* TITULOS */
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 16px;
-  color: var(--text);
-}
-
-p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* FORM */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
-  width: 100%;
-}
-
-input, select {
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-button {
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  background-color: var(--btn-bg);
   color: white;
-  cursor: pointer;
-  transition: background-color 0.25s;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-button:hover {
-  background-color: var(--btn-hover);
+/* Inputs MUI — modo cinema */
+.MuiTextField-root label {
+  color: #ccc !important;
 }
 
-/* LISTA DE SÉRIES */
-.serie-card {
-  background-color: var(--card-bg);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 12px;
-  text-align: left;
+.MuiInputBase-root {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: white !important;
 }
 
-.serie-card span {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--text-secondary);
+.MuiOutlinedInput-notchedOutline {
+  border-color: #888 !important;
 }
 
-.serie-controls {
-  margin-top: 8px;
-  display: flex;
-  gap: 10px;
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent) !important;
 }
 
-.serie-controls button {
-  background-color: #f5f5f5;
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-weight: 600;
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent) !important;
 }
 
-.serie-controls button:hover {
-  background-color: var(--link-hover);
-  color: #fff;
+/* Scroll */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* CENTRO DE PÁGINAS */
-.page-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* HOME ESPECIFICO */
-.home-card p strong {
-  color: var(--text);
-  font-weight: bold;
-}
-
-/* RESPONSIVO */
-@media (max-width: 480px) {
-  main {
-    padding: 20px 10px;
-  }
-
-  .card {
-    padding: 30px 20px;
-  }
-
-  form {
-    max-width: 100%;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
 }

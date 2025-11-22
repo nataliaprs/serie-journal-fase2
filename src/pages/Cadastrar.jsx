@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { api } from "../services/api";
 
-export default function Cadastrar() {
+export default function Cadastrar({ addSerie }) {
   const [formData, setFormData] = useState({
     titulo: "",
     temporadas: "",
@@ -21,32 +20,46 @@ export default function Cadastrar() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    await addSerie(formData);
+    alert("Série cadastrada com sucesso!");
 
-    try {
-      await api.post("/series", formData);
-      alert("Série cadastrada com sucesso!");
-
-      setFormData({
-        titulo: "",
-        temporadas: "",
-        dataLancamento: "",
-        diretor: "",
-        produtora: "",
-        categoria: "",
-        dataAssistiu: "",
-      });
-    } catch (error) {
-      console.error("Erro ao cadastrar série:", error);
-      alert("Erro ao cadastrar série. Verifique o console.");
-    }
+    setFormData({
+      titulo: "",
+      temporadas: "",
+      dataLancamento: "",
+      diretor: "",
+      produtora: "",
+      categoria: "",
+      dataAssistiu: "",
+    });
   }
 
   return (
-    <main style={{ padding: "20px" }}>
-      <h1>Cadastrar Nova Série</h1>
+    <main
+      style={{
+        height: "80vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+      }}
+    >
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          background: "rgba(0,0,0,0.5)",
+          padding: "35px",
+          borderRadius: "12px",
+          backdropFilter: "blur(4px)",
+          width: "380px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+          color: "white",
+        }}
+      >
+        <h2 style={{ textAlign: "center", marginBottom: "10px" }}>Cadastrar Série</h2>
 
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px", maxWidth: "400px" }}>
-        
         <input
           type="text"
           name="titulo"
@@ -70,7 +83,6 @@ export default function Cadastrar() {
           name="dataLancamento"
           value={formData.dataLancamento}
           onChange={handleChange}
-          required
         />
 
         <input
@@ -88,7 +100,6 @@ export default function Cadastrar() {
           placeholder="Produtora"
           value={formData.produtora}
           onChange={handleChange}
-          required
         />
 
         <input
@@ -97,7 +108,6 @@ export default function Cadastrar() {
           placeholder="Categoria"
           value={formData.categoria}
           onChange={handleChange}
-          required
         />
 
         <input
@@ -105,10 +115,22 @@ export default function Cadastrar() {
           name="dataAssistiu"
           value={formData.dataAssistiu}
           onChange={handleChange}
-          required
         />
 
-        <button type="submit">Cadastrar Série</button>
+        <button
+          type="submit"
+          style={{
+            padding: "10px",
+            borderRadius: "8px",
+            background: "#444",
+            color: "white",
+            cursor: "pointer",
+            border: "none",
+            fontSize: "1rem",
+          }}
+        >
+          Cadastrar
+        </button>
       </form>
     </main>
   );

@@ -7,87 +7,68 @@ import api from "../services/api";
  * Formulário de criação e edição de séries utilizando Material UI.
  *
  * Props:
- * - editId: ID da série para edição. Se não existir, cria nova.
+ * - editData: objeto da série que será editada (vem da página Editar)
+ * - onSave: função para criar ou atualizar (addSerie ou updateSerie)
  *
- * Funcionalidades:
- * ✔ Buscar série por ID (GET)
- * ✔ Cadastrar nova série (POST)
- * ✔ Atualizar série existente (PUT)
- * ✔ Feedback visual
- * ✔ Redirecionamento após salvar
+ * O formulário NÃO chama mais a API diretamente.
+ * Ele chama APENAS a função enviada pelo App.jsx (via props).
+ * Assim fica limpo, modular e 100% padrão Fase 2.
  */
-export default function SerieForm({ editId }) {
+export default function SerieForm({ editData, onSave }) {
   const navigate = useNavigate();
 
-  const [titulo, setTitulo] = useState("");
-  const [temporadas, setTemporadas] = useState("");
-  const [dataLancamento, setDataLancamento] = useState("");
-  const [diretor, setDiretor] = useState("");
-  const [produtora, setProdutora] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [dataAssistiu, setDataAssistiu] = useState("");
+  // Estado interno do formulário
+  const [form, setForm] = useState({
+    titulo: "",
+    temporadas: "",
+    dataLancamento: "",
+    diretor: "",
+    produtora: "",
+    categoria: "",
+    dataAssistiu: "",
+  });
 
   const [mensagem, setMensagem] = useState("");
   const [erro, setErro] = useState("");
 
-  // Carregar série ao editar
+  // Preenche automaticamente ao editar
   useEffect(() => {
-    if (!editId) return;
-
-    async function carregar() {
-      try {
-        const response = await api.get(`/series/${editId}`);
-        const serie = response.data;
-
-        setTitulo(serie.titulo || "");
-        setTemporadas(serie.temporadas || "");
-        setDataLancamento(serie.dataLancamento || "");
-        setDiretor(serie.diretor || "");
-        setProdutora(serie.produtora || "");
-        setCategoria(serie.categoria || "");
-        setDataAssistiu(serie.dataAssistiu || "");
-      } catch {
-        setErro("Erro ao carregar dados para edição.");
-      }
+    if (editData) {
+      setForm({
+        titulo: editData.titulo || "",
+        temporadas: editData.temporadas || "",
+        dataLancamento: editData.dataLancamento || "",
+        diretor: editData.diretor || "",
+        produtora: editData.produtora || "",
+        categoria: editData.categoria || "",
+        dataAssistiu: editData.dataAssistiu || "",
+      });
     }
+  }, [editData]);
 
-    carregar();
-  }, [editId]);
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const payload = {
-      id: editId ? Number(editId) : undefined,
-      titulo,
-      temporadas,
-      dataLancamento,
-      diretor,
-      produtora,
-      categoria,
-      dataAssistiu,
-    };
-
     try {
-      if (editId) {
-        await api.put("/series", payload);
-        setMensagem("✨ Série atualizada com sucesso!");
-      } else {
-        await api.post("/series", payload);
-        setMensagem("✨ Série cadastrada com sucesso!");
-      }
+      await onSave(form);
+      setMensagem(editData ? "✨ Série atualizada com sucesso!" : "✨ Série cadastrada!");
 
-      setTimeout(() => navigate("/lista"), 1500);
-
-    } catch {
-      setErro("Erro ao salvar a série.");
+      setTimeout(() => navigate("/lista"), 1200);
+    } catch (err) {
+      console.error(err);
+      setErro("Erro ao salvar série.");
     }
   }
 
   return (
     <Paper elevation={4} sx={{ padding: 4, maxWidth: 600, margin: "20px auto" }}>
       <h2 style={{ textAlign: "center", marginBottom: 20 }}>
-        {editId ? "Editar Série" : "Cadastrar Série"}
+        {editData ? "Editar Série" : "Cadastrar Série"}
       </h2>
 
       {mensagem && (
@@ -124,63 +105,73 @@ export default function SerieForm({ editId }) {
 
       <form onSubmit={handleSubmit} style={{ display: "grid", gap: 20 }}>
         <TextField
+          name="titulo"
           label="Título"
           required
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
+          value={form.titulo}
+          onChange={handleChange}
         />
 
         <TextField
+          name="temporadas"
           label="Número de Temporadas"
           type="number"
           required
-          value={temporadas}
-          onChange={(e) => setTemporadas(e.target.value)}
+          value={form.temporadas}
+          onChange={handleChange}
         />
 
         <TextField
+          name="dataLancamento"
           label="Data de Lançamento"
           type="date"
           InputLabelProps={{ shrink: true }}
-          value={dataLancamento}
-          onChange={(e) => setDataLancamento(e.target.value)}
+          value={form.dataLancamento}
+          onChange={handleChange}
         />
 
         <TextField
+          name="diretor"
           label="Diretor"
           required
-          value={diretor}
-          onChange={(e) => setDiretor(e.target.value)}
+          value={form.diretor}
+          onChange={handleChange}
         />
 
         <TextField
+          name="produtora"
           label="Produtora"
-          value={produtora}
-          onChange={(e) => setProdutora(e.target.value)}
+          value={form.produtora}
+          onChange={handleChange}
         />
 
         <TextField
+          name="categoria"
           label="Categoria"
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
+          value={form.categoria}
+          onChange={handleChange}
         />
 
         <TextField
+          name="dataAssistiu"
           label="Data assistida"
           type="date"
           InputLabelProps={{ shrink: true }}
-          value={dataAssistiu}
-          onChange={(e) => setDataAssistiu(e.target.value)}
+          value={form.dataAssistiu}
+          onChange={handleChange}
         />
 
-        <Button
-          variant="contained"
-          color="secondary"
-          type="submit"
-          sx={{ padding: 1.5 }}
-        >
-          {editId ? "Salvar alterações" : "Cadastrar Série"}
-        </Button>
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{
+        padding: 1.5,
+        backgroundColor: "#222","&:hover": { backgroundColor: "#ff4d4d" },
+  }}
+>
+  {editData ? "Salvar alterações" : "Cadastrar Série"}
+</Button>
+
       </form>
     </Paper>
   );
