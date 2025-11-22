@@ -9,21 +9,22 @@ export default function NavBar() {
         <div className="navbar-links">
 
           <Button className="nav-btn" component={Link} to="/">
-            Home
+            Página Inicial
           </Button>
 
           <Button className="nav-btn" component={Link} to="/sobre">
             Sobre
           </Button>
 
-          <Button className="nav-btn" component={Link} to="/lista">
-            Lista
-          </Button>
-
           <Button className="nav-btn" component={Link} to="/cadastrar">
-            Cadastrar
+            Cadastrar Séries
+          </Button>
+                  
+          <Button className="nav-btn" component={Link} to="/lista">
+            Lista de Séries
           </Button>
 
+          
         </div>
       </Toolbar>
     </AppBar>
