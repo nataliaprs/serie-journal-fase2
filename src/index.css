@@ -1,4 +1,7 @@
-/* CINE THEME — Estética Clean + Movie Day */
+body {
+  margin: 0;
+  padding: 0;
+}
 
 :root {
   --bg-dark: #000;
@@ -8,7 +11,6 @@
   --accent: #ff4d4d;
 }
 
-/* Fundo geral */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -16,26 +18,29 @@ html, body, #root {
   font-family: "Roboto", sans-serif;
   color: var(--text-light);
 
-  /* IMAGEM DE FUNDO */
   background-image: url(/src/assets/background-movie.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-/* Conteúdos com fundo */
 main {
-  padding-top: 90px; /* evita topo colado na navbar */
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-/* Página centralizada */
 .page-container {
   max-width: 900px;
   margin: auto;
   padding: 20px;
 }
 
-/* Cards (para formularios, lista, etc) */
 .card {
   background: rgba(0, 0, 0, 0.65);
   padding: 25px;
@@ -45,7 +50,6 @@ main {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-/* Inputs MUI — modo cinema */
 .MuiTextField-root label {
   color: #ccc !important;
 }
@@ -77,3 +81,4 @@ main {
   background: var(--accent);
   border-radius: 4px;
 }
+

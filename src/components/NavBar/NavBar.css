@@ -1,33 +1,40 @@
 .navbar {
   background: #000 !important;
-  padding: 10px 0;
+  padding: 0;
+  box-shadow: none;
 }
 
+/* Mantém a barra limpa, porém impede estouro */
 .navbar-toolbar {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
+  padding: 8px 12px; /* 🔥 menor que antes */
+  box-sizing: border-box;
 }
 
+/* Evita que itens saiam pra fora da tela */
 .navbar-links {
   display: flex;
-  gap: 20px;
+  gap: 10px;    /* 🔥 reduz gap */
+  flex-wrap: nowrap; 
+  max-width: 100%;
+  overflow: hidden; /* impede sair pra fora */
 }
 
+/* Botões mais compactos */
 .nav-btn {
   color: white !important;
   font-size: 1rem;
-  text-transform: none !important; /* ← REMOVE UPPERCASE */
+  text-transform: none !important;
+  padding: 4px 8px !important; /* 🔥 menor */
+  min-width: auto !important;  /* impede largura exagerada */
+  white-space: nowrap; /* impede quebrar linha */
 }
 
 .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-
-.navbar-toolbar {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-right: 30px; 
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 6px;
 }
 

@@ -1,27 +1,50 @@
 export default function Home() {
   return (
-    <main style={{
-      height: "80vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      textAlign: "center"
-    }}>
-      <div style={{
-        background: "rgba(0,0,0,0.55)",
-        backdropFilter: "blur(4px)",
-        padding: "40px",
-        borderRadius: "12px",
-        maxWidth: "500px",
-        color: "white"
-      }}>
-        <h1 style={{ marginBottom: "10px" }}>Página Inicial</h1>
-        <p style={{ fontSize: "1.1rem" }}>
-          Bem-vindo ao projeto CRUD de séries!<br/>
+    <main>
+      <div
+        style={{
+          background: "rgba(0,0,0,0.55)",
+          padding: "25px",
+          borderRadius: "12px",
+          maxWidth: "450px",
+          width: "90%",
+          textAlign: "center",
+        }}
+      >
+        <h1
+          style={{
+            color: "white",
+            marginBottom: "20px", // ↓ espaço entre título e texto
+          }}
+        >
+          Página Inicial
+        </h1>
+
+        <p
+          style={{
+            color: "#eaeaea",
+            fontSize: "1.1rem",
+            lineHeight: "1.6", // ↓ mais espaçamento entre linhas
+            marginBottom: "6px", // ↓ espaço entre as duas frases
+          }}
+        >
+          Bem-vindo ao Seriando!
+        </p>
+
+        <p
+          style={{
+            color: "#eaeaea",
+            fontSize: "1.05rem",
+            lineHeight: "1.5",
+          }}
+        >
           Gerencie séries assistidas de uma forma fácil e intuitiva.
         </p>
       </div>
     </main>
   );
 }
+
+
+
 

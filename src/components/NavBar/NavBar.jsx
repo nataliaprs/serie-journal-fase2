@@ -5,7 +5,7 @@ import "./NavBar.css";
 export default function NavBar() {
   return (
     <AppBar position="fixed" className="navbar">
-      <Toolbar className="navbar-toolbar">
+      <Toolbar className="navbar-toolbar" style={{minHeight: "48px"}}>
         <div className="navbar-links">
 
           <Button className="nav-btn" component={Link} to="/">

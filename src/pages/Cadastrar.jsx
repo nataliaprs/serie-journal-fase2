@@ -35,103 +35,122 @@ export default function Cadastrar({ addSerie }) {
   }
 
   return (
-    <main
-      style={{
-        height: "80vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px",
-      }}
-    >
-      <form
-        onSubmit={handleSubmit}
+    <main>
+      <div
         style={{
-          background: "rgba(0,0,0,0.5)",
-          padding: "35px",
+          background: "rgba(0,0,0,0.6)",
+          padding: "30px",
           borderRadius: "12px",
-          backdropFilter: "blur(4px)",
-          width: "380px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "15px",
-          color: "white",
+          maxWidth: "400px",
+          width: "90%",
+          textAlign: "center",
         }}
       >
-        <h2 style={{ textAlign: "center", marginBottom: "10px" }}>Cadastrar Série</h2>
-
-        <input
-          type="text"
-          name="titulo"
-          placeholder="Título"
-          value={formData.titulo}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="number"
-          name="temporadas"
-          placeholder="Número de Temporadas"
-          value={formData.temporadas}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="date"
-          name="dataLancamento"
-          value={formData.dataLancamento}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="diretor"
-          placeholder="Diretor"
-          value={formData.diretor}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="text"
-          name="produtora"
-          placeholder="Produtora"
-          value={formData.produtora}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="categoria"
-          placeholder="Categoria"
-          value={formData.categoria}
-          onChange={handleChange}
-        />
-
-        <input
-          type="date"
-          name="dataAssistiu"
-          value={formData.dataAssistiu}
-          onChange={handleChange}
-        />
-
-        <button
-          type="submit"
+        <h1
           style={{
-            padding: "10px",
-            borderRadius: "8px",
-            background: "#444",
             color: "white",
-            cursor: "pointer",
-            border: "none",
-            fontSize: "1rem",
+            marginBottom: "20px",
           }}
         >
-          Cadastrar
-        </button>
-      </form>
+          Cadastrar Nova Série
+        </h1>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            width: "100%",
+          }}
+        >
+          <input
+            type="text"
+            name="titulo"
+            placeholder="Título"
+            value={formData.titulo}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="number"
+            name="temporadas"
+            placeholder="Número de Temporadas"
+            value={formData.temporadas}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="date"
+            name="dataLancamento"
+            value={formData.dataLancamento}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="text"
+            name="diretor"
+            placeholder="Diretor"
+            value={formData.diretor}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="text"
+            name="produtora"
+            placeholder="Produtora"
+            value={formData.produtora}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="text"
+            name="categoria"
+            placeholder="Categoria"
+            value={formData.categoria}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <input
+            type="date"
+            name="dataAssistiu"
+            value={formData.dataAssistiu}
+            onChange={handleChange}
+            required
+            style={{ padding: "10px", borderRadius: "6px" }}
+          />
+
+          <button
+            type="submit"
+            style={{
+              padding: "12px",
+              fontSize: "1rem",
+              background: "#c62828",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+          >
+            Cadastrar Série
+          </button>
+        </form>
+      </div>
     </main>
   );
 }
+
+
+
