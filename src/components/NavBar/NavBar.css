@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  justify-content: space-between; /* título à esquerda, links à direita */
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--bg); /* fundo igual ao site */
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-left .nav-logo {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.nav-right {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #ffd6e0; /* rosa suave */
+  color: #a84c73; /* texto mais escuro */
+}
