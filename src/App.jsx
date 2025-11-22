@@ -1,46 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-
 import NavBar from "./components/NavBar/NavBar";
+
 import Home from "./pages/Home";
 import Sobre from "./pages/Sobre";
-import SerieForm from "./pages/SerieForm";
 import Lista from "./pages/Lista";
+import Cadastrar from "./pages/Cadastrar";
+import Editar from "./pages/Editar";
 
-export default function App() {
-  const [editingSerie, setEditingSerie] = useState(null);
-  const [series, setSeries] = useState([]);
-
+/**
+ * Componente principal que define todas as rotas da aplicação.
+ * A Navbar aparece em todas as páginas e o conteúdo muda conforme a rota.
+ */
+function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <main style={{ padding: "20px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route
-            path="/cadastrar"
-            element={
-              <SerieForm
-                editingSerie={editingSerie}
-                setEditingSerie={setEditingSerie}
-                series={series}
-                setSeries={setSeries}
-              />
-            }
-          />
-          <Route
-            path="/lista"
-            element={
-              <Lista
-                series={series}
-                setSeries={setSeries}
-                setEditingSerie={setEditingSerie}
-              />
-            }
-          />
-        </Routes>
-      </main>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sobre" element={<Sobre />} />
+
+        <Route path="/lista" element={<Lista />} />
+
+        <Route path="/cadastrar" element={<Cadastrar />} />
+
+        {/* Nova rota obrigatória da Fase 2 */}
+        <Route path="/editar/:id" element={<Editar />} />
+      </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;

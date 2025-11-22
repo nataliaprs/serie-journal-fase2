@@ -1,29 +1,26 @@
-import { useEffect } from "react";
+import { useSeries } from "../hooks/useSeries";
 import SerieList from "../components/SerieList/SerieList";
-import { api } from "../services/api";
 
-export default function Lista({ series, setSeries, setEditingSerie }) {
-  useEffect(() => {
-    async function carregarSeries() {
-      try {
-        const response = await api.get("/series");
-        setSeries(response.data);
-      } catch (erro) {
-        console.error("Erro ao carregar séries", erro);
-      }
-    }
-    carregarSeries();
-  }, [setSeries]);
+/**
+ * Página de listagem das séries cadastradas.
+ * Aqui consumimos nosso hook useSeries(), que já:
+ * - busca dados da API (GET)
+ * - remove séries (DELETE)
+ * - controla loading e erros
+ */
+export default function Lista() {
+  const { series, loading, error, removeSerie } = useSeries();
 
   return (
-    <div className="page-center">
+    <div style={{ padding: "20px" }}>
       <h1>Lista de Séries</h1>
-      <SerieList
-        series={series}
-        setSeries={setSeries}
-        setEditingSerie={setEditingSerie}
-      />
+
+      {loading && <p>Carregando séries...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {!loading && !error && (
+        <SerieList series={series} removeSerie={removeSerie} />
+      )}
     </div>
   );
 }
-

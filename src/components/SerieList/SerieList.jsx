@@ -1,52 +1,72 @@
-import React from "react";
-import { api } from "../../services/api";
+import { Card, CardContent, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function SerieList({ series = [], setSeries, setEditingSerie }) {
-  async function handleDelete(id) {
-    if (!confirm("Deseja realmente excluir essa série?")) return;
-
-    try {
-      await api.delete(`/series/${id}`);
-      setSeries(prev => prev.filter(s => s.id !== id));
-    } catch (erro) {
-      alert("Erro ao excluir série!");
-      console.error(erro);
-    }
+/**
+ * Componente de listagem de séries utilizando Material UI.
+ *
+ * Props:
+ * - series: lista de séries retornadas da API
+ * - removeSerie: função que remove uma série (DELETE)
+ */
+export default function SerieList({ series, removeSerie }) {
+  if (!series || series.length === 0) {
+    return <p>Nenhuma série cadastrada ainda.</p>;
   }
 
   return (
-    <section className="serie-list">
-      <ul className="serie-list-ul">
-        {series.length === 0 ? (
-          <li className="serie-empty">Nenhuma série cadastrada.</li>
-        ) : (
-          series.map(s => (
-            <li key={s.id} className="serie-item">
-              <div className="serie-line">
-                <span className="serie-text">
-                  {s.title}
-                  {s.numTemporadas && ` — ${s.numTemporadas} temporadas`}
-                  {s.dataLancamento && ` — ${s.dataLancamento}`}
-                  {s.diretor && ` — ${s.diretor}`}
-                  {s.produtora && ` — ${s.produtora}`}
-                  {s.categoria && ` — ${s.categoria}`}
-                  {s.dataAssistiu && ` — ${s.dataAssistiu}`}
-                </span>
-                <span className="serie-controls">
-                  <button className="btn small" onClick={() => setEditingSerie(s)}>
-                    Editar
-                  </button>
-                  <button className="btn small danger" onClick={() => handleDelete(s.id)}>
-                    Excluir
-                  </button>
-                </span>
-              </div>
-              <hr className="serie-separator" />
-            </li>
-          ))
-        )}
-      </ul>
-    </section>
+    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      {series.map((serie) => (
+        <Card
+          key={serie.id}
+          sx={{
+            backgroundColor: "#ffe6f2",
+            padding: 2,
+            borderRadius: 3,
+          }}
+        >
+          <CardContent>
+            <h2 style={{ marginBottom: 10 }}>{serie.titulo}</h2>
+
+            <p>Temporadas: {serie.temporadas}</p>
+            <p>Diretor: {serie.diretor}</p>
+            <p>Produtora: {serie.produtora}</p>
+            <p>Categoria: {serie.categoria}</p>
+
+            <p>
+              Lançamento:{" "}
+              {serie.dataLancamento
+                ? new Date(serie.dataLancamento).toLocaleDateString()
+                : "—"}
+            </p>
+
+            <p>
+              Assistiu em:{" "}
+              {serie.dataAssistiu
+                ? new Date(serie.dataAssistiu).toLocaleDateString()
+                : "—"}
+            </p>
+
+            <div style={{ display: "flex", gap: 10, marginTop: 15 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                component={Link}
+                to={`/editar/${serie.id}`}
+              >
+                Editar
+              </Button>
+
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => removeSerie(serie.id)}
+              >
+                Excluir
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   );
 }
