@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paper, TextField, Button } from "@mui/material";
@@ -9,23 +10,15 @@ import api from "../services/api";
  * Props:
  * - editData (optional): objeto com dados para preencher o formulário no modo edição
  * - onSave (optional): função para executar a gravação (padrão: faz chamada direta à API)
- *
- * Observações:
- * - protege useNavigate com fallback para permitir render em testes (sem Router).
- * - mantém o comportamento de salvar tanto via onSave (quando injetado por App) ou via API direto.
- * - fornece mensagens de sucesso/erro simples e redireciona para /lista após salvar.
  */
 export default function SerieForm({ editData = null, onSave = null }) {
-  // Fallback para useNavigate quando componente renderizado fora de Router em testes.
   let navigate = () => {};
   try {
-    // Se não estiver dentro de um Router, useNavigate() lançará — capturamos.
     navigate = useNavigate();
   } catch (e) {
     navigate = () => {};
   }
 
-  // estado do formulário
   const [form, setForm] = useState({
     titulo: "",
     temporadas: "",
@@ -39,7 +32,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
   const [mensagem, setMensagem] = useState("");
   const [erro, setErro] = useState("");
 
-  // preenche o formulário no modo edição
   useEffect(() => {
     if (editData) {
       setForm({
@@ -65,13 +57,10 @@ export default function SerieForm({ editData = null, onSave = null }) {
     setMensagem("");
 
     try {
-      // se a função onSave foi passada (App.jsx), usa ela; senão, chama API direto
       if (onSave && typeof onSave === "function") {
         await onSave(editData ? { ...form, id: editData.id } : form);
       } else {
-        // comportamento padrão: POST ou PUT para API
         if (editData) {
-          // garante que id esteja presente
           await api.put("/series", { ...form, id: editData.id });
         } else {
           await api.post("/series", form);
@@ -79,7 +68,7 @@ export default function SerieForm({ editData = null, onSave = null }) {
       }
 
       setMensagem(editData ? "✨ Série atualizada com sucesso!" : "✨ Série cadastrada com sucesso!");
-      // redireciona para lista (se houver navigate)
+
       setTimeout(() => {
         navigate("/lista");
       }, 900);
@@ -137,7 +126,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
           required
           value={form.titulo}
           onChange={handleChange}
-          inputProps={{ "aria-label": "Título da série" }}
         />
 
         <TextField
@@ -149,11 +137,11 @@ export default function SerieForm({ editData = null, onSave = null }) {
           onChange={handleChange}
         />
 
-        <TextField
+       <TextField
           name="dataLancamento"
-          label="Data de Lançamento"
+          label="Data de Lançamento da Temporada"
           type="date"
-          InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true, style: { color: "white" } }}   // 👈 FIXE ISSO
           value={form.dataLancamento}
           onChange={handleChange}
         />
@@ -182,9 +170,9 @@ export default function SerieForm({ editData = null, onSave = null }) {
 
         <TextField
           name="dataAssistiu"
-          label="Data assistida"
+          label="Data em que assisti"
           type="date"
-          InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true, style: { color: "white" } }}   // 👈 FIXE ISSO
           value={form.dataAssistiu}
           onChange={handleChange}
         />

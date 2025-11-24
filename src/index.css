@@ -21,7 +21,6 @@ html, body, #root {
   background-image: url(/src/assets/background-movie.png);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
 }
 
 main {

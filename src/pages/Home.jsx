@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * Página inicial simples.
  * Exibe mensagem de boas-vindas e cumpre o requisito de rota pública.

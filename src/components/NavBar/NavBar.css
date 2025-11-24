@@ -4,37 +4,33 @@
   box-shadow: none;
 }
 
-/* Mantém a barra limpa, porém impede estouro */
 .navbar-toolbar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  padding: 8px 12px; /* 🔥 menor que antes */
+  padding: 8px 12px; 
   box-sizing: border-box;
 }
 
-/* Evita que itens saiam pra fora da tela */
 .navbar-links {
   display: flex;
-  gap: 10px;    /* 🔥 reduz gap */
+  gap: 10px;    
   flex-wrap: nowrap; 
   max-width: 100%;
-  overflow: hidden; /* impede sair pra fora */
+  overflow: hidden; 
 }
 
-/* Botões mais compactos */
 .nav-btn {
   color: white !important;
   font-size: 1rem;
   text-transform: none !important;
-  padding: 4px 8px !important; /* 🔥 menor */
-  min-width: auto !important;  /* impede largura exagerada */
-  white-space: nowrap; /* impede quebrar linha */
+  padding: 4px 8px !important; 
+  min-width: auto !important;  
+  white-space: nowrap; 
 }
 
 .nav-btn:hover {
   background: rgba(255, 255, 255, 0.12) !important;
   border-radius: 6px;
 }
-
