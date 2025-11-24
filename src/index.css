@@ -1,6 +1,24 @@
+/* index.css
+   Seções:
+   1) Reset e tema base
+   2) Estrutura e layout
+   3) Estilização MUI (tema escuro)
+   4) Overrides para formulário claro (.light-form)
+   5) Scrollbar (opcional)
+*/
+
+/* ===== Reset básico ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
@@ -11,9 +29,8 @@ body {
   --accent: #ff4d4d;
 }
 
+/* Estrutura */
 html, body, #root {
-  margin: 0;
-  padding: 0;
   height: 100%;
   font-family: "Roboto", sans-serif;
   color: var(--text-light);
@@ -28,9 +45,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center; /* Para centralizar texto */
+  text-align: center;
   padding: 20px;
-  box-sizing: border-box;
   overflow-x: hidden;
 }
 
@@ -44,23 +60,37 @@ main {
   background: rgba(0, 0, 0, 0.65);
   padding: 25px;
   border-radius: 12px;
-  color: white;
+  color: #fff;
   backdrop-filter: blur(6px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-.MuiTextField-root label {
-  color: #ccc !important;
+/* ===== MUI – Labels e inputs ===== */
+/* Garante visibilidade do label (normal, focado e shrink) */
+.MuiTextField-root label,
+.MuiInputLabel-root,
+.MuiInputLabel-root.Mui-focused,
+.MuiInputLabel-root.MuiInputLabel-shrink {
+  color: #ddd !important;
+}
+
+.MuiFormLabel-asterisk {
+  color: var(--accent) !important;
+  opacity: 0.9;
 }
 
 .MuiInputBase-root {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  color: white !important;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #fff !important;
+}
+
+.MuiInputBase-input {
+  color: #fff !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border-color: #888 !important;
+  border-color: #777 !important;
 }
 
 .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
@@ -69,14 +99,60 @@ main {
 
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.25);
 }
 
-/* Scroll */
-::-webkit-scrollbar {
-  width: 8px;
+/* Ícone do calendário no tema escuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 4px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+/* ===== Overrides para formulário claro (Paper branco) ===== */
+.light-form .MuiTextField-root label,
+.light-form .MuiInputLabel-root,
+.light-form .MuiInputLabel-root.Mui-focused,
+.light-form .MuiInputLabel-root.MuiInputLabel-shrink {
+  color: #333 !important;
+}
+
+.light-form .MuiInputBase-root {
+  background: #fff;
+  border-radius: 8px;
+  color: #111 !important;
+}
+
+.light-form .MuiOutlinedInput-notchedOutline {
+  border-color: #cfcfcf !important;
+}
+
+.light-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent) !important;
+}
+
+.light-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.2);
+}
+
+/* Ícone do calendário em tema claro */
+.light-form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: none;
+}
+
+/* Força texto PRETO nos inputs do formulário claro */
+.light-form .MuiInputBase-input,
+.light-form .MuiOutlinedInput-input {
+  color: #111 !important;
+  caret-color: #111;
+}
+
+/* Placeholder, quando existir */
+.light-form .MuiInputBase-input::placeholder {
+  color: #777 !important;
+  opacity: 1;
 }

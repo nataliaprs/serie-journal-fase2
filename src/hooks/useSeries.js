@@ -1,11 +1,12 @@
 /**
- * Hook useSeries
- *
- * Controla toda comunicação com a API (json-server):
- *  GET    /series
- *  POST   /series
- *  PUT    /series/:id
- *  DELETE /series/:id
+ * useSeries
+ * Hook responsável por integrar com a API (json-server).
+ * Endpoints:
+ *  - GET    /series
+ *  - POST   /series
+ *  - PUT    /series/:id
+ *  - DELETE /series/:id
+ * Cada função atualiza o estado global de 'series' após concluir a operação.
  */
 
 import { useEffect, useState } from "react";
@@ -16,7 +17,6 @@ export function useSeries() {
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
 
-  /** GET — Buscar todas as séries */
   async function fetchSeries() {
     try {
       setLoading(true);
@@ -34,7 +34,6 @@ export function useSeries() {
     fetchSeries();
   }, []);
 
-  /** POST — Cadastrar nova série */
   async function addSerie(serie) {
     try {
       setLoading(true);
@@ -42,7 +41,11 @@ export function useSeries() {
       const payload = {
         titulo: serie.titulo,
         temporadas: Number(serie.temporadas),
-        dataLancamento: serie.dataLancamento,
+        dataLancamento: serie.dataLancamento || "",
+        diretor: serie.diretor || "",
+        produtora: serie.produtora || "",
+        categoria: serie.categoria || "",
+        dataAssistiu: serie.dataAssistiu || "",
       };
 
       await api.post("/series", payload);
@@ -55,7 +58,6 @@ export function useSeries() {
     }
   }
 
-  /** PUT — Atualizar série (CORRETO: /series/:id) */
   async function updateSerie(serie) {
     try {
       setLoading(true);
@@ -63,7 +65,11 @@ export function useSeries() {
       const payload = {
         titulo: serie.titulo,
         temporadas: Number(serie.temporadas),
-        dataLancamento: serie.dataLancamento,
+        dataLancamento: serie.dataLancamento || "",
+        diretor: serie.diretor || "",
+        produtora: serie.produtora || "",
+        categoria: serie.categoria || "",
+        dataAssistiu: serie.dataAssistiu || "",
       };
 
       await api.put(`/series/${serie.id}`, payload);
@@ -76,7 +82,6 @@ export function useSeries() {
     }
   }
 
-  /** DELETE — Remover série */
   async function removeSerie(id) {
     try {
       setLoading(true);

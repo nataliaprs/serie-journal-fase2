@@ -1,3 +1,9 @@
+/**
+ * App
+ * Define as rotas da aplicação (Home, Sobre, Lista, Cadastrar, Editar).
+ * - Dados (series) vêm do hook useSeries.
+ */
+
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
