@@ -70,21 +70,22 @@ export default function SerieForm({ editData = null, onSave = null }) {
 
   return (
     <section className="light-form">
-      {/* Centraliza e define uma largura adequada */}
+      {/* Encostado na NavBar (sem centralização vertical) e centralizado na horizontal */}
       <Box
         sx={{
-          minHeight: "calc(100vh - 80px)", // altura útil descontando a NavBar
+          width: "100%",
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
-          px: 2, // respiro lateral em telas menores
+          px: 2,
+          pt: 8, // espaço abaixo da AppBar; ajuste se quiser mais/menos
+          pb: 6,
         }}
       >
         <Paper
           elevation={6}
           sx={{
             width: "100%",
-            maxWidth: 640,      // ajuste aqui se quiser maior/menor (ex.: 600, 680)
+            maxWidth: 680, // largura confortável; ajuste se quiser
             p: 3,
             borderRadius: 2,
             backgroundColor: "#fff",

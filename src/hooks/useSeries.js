@@ -37,7 +37,6 @@ export function useSeries() {
   async function addSerie(serie) {
     try {
       setLoading(true);
-
       const payload = {
         titulo: serie.titulo,
         temporadas: Number(serie.temporadas),
@@ -47,7 +46,6 @@ export function useSeries() {
         categoria: serie.categoria || "",
         dataAssistiu: serie.dataAssistiu || "",
       };
-
       await api.post("/series", payload);
       await fetchSeries();
     } catch (e) {
@@ -61,7 +59,6 @@ export function useSeries() {
   async function updateSerie(serie) {
     try {
       setLoading(true);
-
       const payload = {
         titulo: serie.titulo,
         temporadas: Number(serie.temporadas),
@@ -71,9 +68,8 @@ export function useSeries() {
         categoria: serie.categoria || "",
         dataAssistiu: serie.dataAssistiu || "",
       };
-
-      await api.put(`/series/${serie.id}`, payload);
-      await fetchSeries();
+      await api.put(`/series/${serie.id}`, payload); // <- /series/:id
+      await fetchSeries(); // <- garante estado atualizado
     } catch (e) {
       console.error("Erro ao atualizar série:", e);
       setErro("Erro ao atualizar série.");
@@ -95,13 +91,5 @@ export function useSeries() {
     }
   }
 
-  return {
-    series,
-    loading,
-    erro,
-    addSerie,
-    updateSerie,
-    removeSerie,
-    fetchSeries,
-  };
+  return { series, loading, erro, addSerie, updateSerie, removeSerie, fetchSeries };
 }
