@@ -151,6 +151,3 @@ export default function Cadastrar({ addSerie }) {
     </main>
   );
 }
-
-
-

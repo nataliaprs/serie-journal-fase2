@@ -1,5 +1,11 @@
 import SerieList from "../components/SerieList/SerieList";
 
+/**
+ * Página Lista
+ * Recebe séries do hook useSeries e exibe a lista usando o componente SerieList.
+ * Também mostra estados de loading e erro.
+ */
+
 export default function Lista({ series, loading, erro, removeSerie }) {
   return (
     <main style={{ padding: "20px" }}>
@@ -14,4 +20,3 @@ export default function Lista({ series, loading, erro, removeSerie }) {
     </main>
   );
 }
-

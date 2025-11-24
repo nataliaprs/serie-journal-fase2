@@ -64,7 +64,6 @@ function App() {
             <Editar
               series={series}
               updateSerie={updateSerie}
-              fetchSeries={fetchSeries}
             />
           }
         />
@@ -74,4 +73,3 @@ function App() {
 }
 
 export default App;
-

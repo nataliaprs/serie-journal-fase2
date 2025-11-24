@@ -1,7 +1,6 @@
 ## Serie Journal — Fase 2
 
 **Autora: Natalia Prestes Santos Pontes**
-
 Projeto desenvolvido para a disciplina Desenvolvimento de Sistemas Frontend (PUCRS) — Fase 2.
 Nesta etapa, o objetivo é evoluir o CRUD da Fase 1, integrando API real, Material UI, Axios, React Router e testes automatizados.
 
@@ -32,27 +31,20 @@ npm start
 
 http://localhost:5000
 
-4. Rodar o frontend
+4. Rodar os testes
 
-## No diretório principal do projeto:
+Testes cobrem:
 
-npm run dev
+✔ Página Home
 
-## Acesse no navegador:
+✔ Página Sobre
 
-http://localhost:5173
+✔ Formulário (inputs e digitação)
 
-## Como rodar os testes (Vitest + RTL)
+✔ Lista de séries
 
-npm test
+✔ Renderização sem router (fallback useNavigate)
 
-Os testes cobrem:
-
-✔ renderização das páginas Home e Sobre
-
-✔ renderização de lista de séries
-
-✔ inputs obrigatórios do formulário
 
 ## Estrutura do Projeto
 
@@ -66,34 +58,35 @@ src/
     Home.jsx
     Sobre.jsx
     Lista.jsx
+    Cadastrar.jsx
+    Editar.jsx
     SerieForm.jsx
   services/
     api.js
   tests/
-    Home.test.jsx
-    Sobre.test.jsx
-    SerieList.test.jsx
-    SerieForm.test.jsx
+    *.test.jsx
   assets/
 App.jsx
 main.jsx
 index.css
-
+vite.config.js
 
 ## Tecnologias Utilizadas
 
-| Categoria   | Ferramenta                     |
-| ----------- | ------------------------------ |
-| Biblioteca  | React                          |
-| UI          | Material UI                    |
-| Roteamento  | React Router DOM               |
-| HTTP Client | Axios                          |
-| Testes      | Vitest + React Testing Library |
-| Build       | Vite                           |
+| Categoria  | Ferramenta       |
+| ---------- | ---------------- |
+| Biblioteca | React            |
+| Build      | Vite             |
+| UI         | Material UI      |
+| Roteamento | React Router DOM |
+| HTTP       | Axios            |
+| Testes     | Vitest + RTL     |
+| Ambiente   | JSDOM            |
 
-## Funções Implementadas
 
-✔ CRUD completo usando API real
+## ✔ Funções Implementadas
+
+CRUD completo usando API real
 
 GET /series → listar séries
 
@@ -132,44 +125,21 @@ Centraliza toda lógica de integração com API.
 Simples, objetivos e funcionais.
 
 
-## Screenshots do Projeto
+## ✔ Screenshots do Projeto
+
+(inserir screenshot da Home)
+
+(inserir screenshot da Lista de Séries)
+
+(inserir screenshot do Formulário)
+
+(inserir screenshot dos testes passando)
+
 
 ## Descrição dos Componentes
 
-✔ NavBar
-
-Barra de navegação estilizada com Material UI.
-
-✔ SerieForm
-
-Formulário de criação/edição com TextFields e validações.
-
-✔ SerieList
-
-Exibe séries em cards MUI com botões de editar e excluir.
-
-✔ useSeries (Hook)
-
-Gerencia toda comunicação com a API:
-
-GET
-
-POST
-
-PUT
-
-DELETE
-
-loading
-
-erro
-
-✔ Páginas:
-
-Home – mensagem de boas-vindas
-
-Sobre – informações sobre o projeto
-
-Lista – lista dinâmica vinda da API
-
-Cadastrar / Editar – formulário usando mesma página
+✔ NavBar — Navegação fixa superior
+✔ SerieList — Cards de séries + editar/excluir
+✔ SerieForm — Formulário de cadastro/edição
+✔ useSeries — Hook que integra a API
+✔ Home, Sobre, Lista, Cadastrar, Editar — Rotas da aplicação

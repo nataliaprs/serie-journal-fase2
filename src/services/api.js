@@ -1,9 +1,13 @@
 import axios from "axios";
 
-// Instância do axios para toda a aplicação
+/**
+* api.js — Instância global do Axios usada por toda a aplicação.
+* - Centraliza a URL base e evita repetição em cada requisição.
+* - Facilita manutenção e testes.
+*/
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+baseURL: "http://localhost:5000", // API fornecida pelo professor
 });
 
-// Exporta como default (OBRIGATÓRIO!)
+
 export default api;

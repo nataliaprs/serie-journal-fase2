@@ -1,11 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vitest/config";
 
-// Arquivo de configuração do Vite — agora corrigido (apenas 1 export default)
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5173
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./vitest.setup.js"
   }
 });
-

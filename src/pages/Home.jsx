@@ -1,3 +1,8 @@
+/**
+ * Página inicial simples.
+ * Exibe mensagem de boas-vindas e cumpre o requisito de rota pública.
+ */
+
 export default function Home() {
   return (
     <main>
@@ -44,7 +49,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-
