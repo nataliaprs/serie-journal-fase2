@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Cadastrar({ addSerie }) {
   const [formData, setFormData] = useState({
@@ -21,9 +20,12 @@ export default function Cadastrar({ addSerie }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     await addSerie(formData);
+
     alert("Série cadastrada com sucesso!");
 
+    // limpa formulário
     setFormData({
       titulo: "",
       temporadas: "",
@@ -44,6 +46,7 @@ export default function Cadastrar({ addSerie }) {
           borderRadius: "12px",
           maxWidth: "400px",
           width: "90%",
+          margin: "0 auto",
           textAlign: "center",
         }}
       >
@@ -88,6 +91,7 @@ export default function Cadastrar({ addSerie }) {
           <input
             type="date"
             name="dataLancamento"
+            placeholder="Data de Lançamento da Temporada"
             value={formData.dataLancamento}
             onChange={handleChange}
             required
@@ -127,6 +131,7 @@ export default function Cadastrar({ addSerie }) {
           <input
             type="date"
             name="dataAssistiu"
+            placeholder="Data em que assisti"
             value={formData.dataAssistiu}
             onChange={handleChange}
             required

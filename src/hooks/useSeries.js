@@ -1,35 +1,27 @@
-import { useEffect, useState } from "react";
-import api from "../services/api";
-
 /**
  * Hook useSeries
  *
- * Responsável por centralizar toda a comunicação com a API:
- * - fetchSeries(): GET /series
- * - addSerie():   POST /series
- * - updateSerie(): PUT /series
- * - removeSerie(): DELETE /series/:id
- *
- * Também controla:
- * - loading: exibe carregamento
- * - erro: mensagens de erro padronizadas
- *
- * Esse hook permite que todo o fluxo de dados da aplicação fique
- * organizado e reutilizável, cumprindo o padrão da Fase 2.
+ * Controla toda comunicação com a API (json-server):
+ *  GET    /series
+ *  POST   /series
+ *  PUT    /series/:id
+ *  DELETE /series/:id
  */
+
+import { useEffect, useState } from "react";
+import api from "../services/api";
+
 export function useSeries() {
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
 
-  /** GET — Carrega todas as séries */
+  /** GET — Buscar todas as séries */
   async function fetchSeries() {
     try {
       setLoading(true);
-      setErro("");
-
       const res = await api.get("/series");
-      setSeries(res.data || []);
+      setSeries(Array.isArray(res.data) ? res.data : []);
     } catch (e) {
       console.error("Erro ao carregar séries:", e);
       setErro("Erro ao carregar séries.");
@@ -38,7 +30,6 @@ export function useSeries() {
     }
   }
 
-  // Carrega automaticamente ao iniciar
   useEffect(() => {
     fetchSeries();
   }, []);
@@ -47,21 +38,35 @@ export function useSeries() {
   async function addSerie(serie) {
     try {
       setLoading(true);
-      await api.post("/series", serie);
+
+      const payload = {
+        titulo: serie.titulo,
+        temporadas: Number(serie.temporadas),
+        dataLancamento: serie.dataLancamento,
+      };
+
+      await api.post("/series", payload);
       await fetchSeries();
     } catch (e) {
-      console.error("Erro ao adicionar série:", e);
+      console.error("Erro ao cadastrar série:", e);
       setErro("Erro ao cadastrar série.");
     } finally {
       setLoading(false);
     }
   }
 
-  /** PUT — Atualizar série */
+  /** PUT — Atualizar série (CORRETO: /series/:id) */
   async function updateSerie(serie) {
     try {
       setLoading(true);
-      await api.put("/series", serie);
+
+      const payload = {
+        titulo: serie.titulo,
+        temporadas: Number(serie.temporadas),
+        dataLancamento: serie.dataLancamento,
+      };
+
+      await api.put(`/series/${serie.id}`, payload);
       await fetchSeries();
     } catch (e) {
       console.error("Erro ao atualizar série:", e);

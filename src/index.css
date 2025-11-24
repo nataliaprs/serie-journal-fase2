@@ -17,19 +17,19 @@ html, body, #root {
   height: 100%;
   font-family: "Roboto", sans-serif;
   color: var(--text-light);
-
   background-image: url(/src/assets/background-movie.png);
   background-size: cover;
   background-position: center;
 }
 
 main {
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px); /* 80px = altura da NavBar */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center; /* Para centralizar texto */
   padding: 20px;
-
   box-sizing: border-box;
   overflow-x: hidden;
 }
