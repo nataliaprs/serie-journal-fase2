@@ -166,7 +166,7 @@ index.css
 ## Screenshots
 
 - API
-![API](./screenshots/API.png)
+(./screenshots/API.png)
 
 - Home  
   ![Home](./screenshots/home.png)
