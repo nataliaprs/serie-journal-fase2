@@ -166,31 +166,42 @@ index.css
 ## Screenshots
 
 - API
-(./screenshots/API.png)
+
+<img width="1919" height="1028" alt="API" src="https://github.com/user-attachments/assets/2e9e78e2-4189-4bb9-91bb-d1e2afcfadbe" />
 
 - Home  
-  ![Home](./screenshots/home.png)
 
-- Sobre  
-  ![Sobre](./screenshots/sobre.png)
+<img width="1919" height="993" alt="home" src="https://github.com/user-attachments/assets/61b78168-8eeb-4f42-b126-58cb089cbc25" />
 
-- Cadastrar Série  
-  ![Cadastrar](./screenshots/cadastrar.png)
+- Sobre
+
+<img width="1919" height="942" alt="sobre" src="https://github.com/user-attachments/assets/12c3ecd3-6e3c-4c83-96e4-014c07ed13c9" />
+
+- Cadastrar Série 
+
+<img width="1919" height="940" alt="cadastrar" src="https://github.com/user-attachments/assets/0445af15-b119-4c0d-8d8d-df829edc38d5" />
 
 - Editar Série  
-  ![Editar](./screenshots/editar.png)
+
+<img width="1919" height="943" alt="editar" src="https://github.com/user-attachments/assets/66cbe990-1a19-4881-807f-45f0c4f5508e" />
 
 - Lista de Séries  
-  ![Lista](./screenshots/lista.png)
+
+<img width="1919" height="941" alt="lista" src="https://github.com/user-attachments/assets/07ef4fc2-0ee7-470d-be74-a8f323ac990f" />
 
 - Série Atualizada  
-  ![Série Atualizada](./screenshots/serieatualizada.png)
+
+<img width="1919" height="945" alt="serieatualizada" src="https://github.com/user-attachments/assets/11284c8e-3fe2-41d8-8819-a512728f322a" />
 
 - Exclusão de Série  
-  ![Exclusão de Série](./screenshots/excluirserie.png)
 
-- Testes passando  
-  ![Testes](./screenshots/teste.png)
+<img width="1919" height="946" alt="excluirserie" src="https://github.com/user-attachments/assets/8ba888c4-63f0-4821-af3b-b6f8a76e818d" />
+
+
+- Testes passando
+
+<img width="1918" height="1032" alt="teste" src="https://github.com/user-attachments/assets/4ef364d3-66c8-42bc-85af-a5ad216a5749" />
+
 
 
 # Dicas e troubleshooting
