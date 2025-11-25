@@ -1,12 +1,16 @@
 /**
  * useSeries
- * Hook responsável por integrar com a API (json-server).
- * Endpoints:
+ * Integração com a API (json-server).
+ * Endpoints suportados:
  *  - GET    /series
  *  - POST   /series
- *  - PUT    /series/:id
+ *  - PUT    /series/:id  (padrão json-server)
+ *  - PUT    /series      (fallback com id no body, conforme enunciado)
  *  - DELETE /series/:id
- * Cada função atualiza o estado global de 'series' após concluir a operação.
+ *
+ * Estratégia:
+ *  - Atualização otimista no updateSerie (reflete na UI antes do servidor).
+ *  - Após cada operação, sincroniza a lista com fetchSeries().
  */
 
 import { useEffect, useState } from "react";
@@ -59,6 +63,7 @@ export function useSeries() {
   async function updateSerie(serie) {
     try {
       setLoading(true);
+
       const payload = {
         titulo: serie.titulo,
         temporadas: Number(serie.temporadas),
@@ -68,11 +73,29 @@ export function useSeries() {
         categoria: serie.categoria || "",
         dataAssistiu: serie.dataAssistiu || "",
       };
-      await api.put(`/series/${serie.id}`, payload); // <- /series/:id
-      await fetchSeries(); // <- garante estado atualizado
+
+      // Atualização otimista: reflete na UI imediatamente
+      setSeries((prev) =>
+        prev.map((s) => (s.id === serie.id ? { ...s, ...payload, id: serie.id } : s))
+      );
+
+      // 1) Tenta PUT em /series/:id (json-server padrão)
+      try {
+        await api.put(`/series/${serie.id}`, payload);
+      } catch (e) {
+        // 2) Fallback: PUT em /series com id no body (conforme enunciado)
+        if (!e.response || (e.response && e.response.status >= 400)) {
+          await api.put(`/series`, { id: serie.id, ...payload });
+        }
+      }
+
+      // Sincroniza com o servidor para garantir consistência
+      await fetchSeries();
     } catch (e) {
       console.error("Erro ao atualizar série:", e);
       setErro("Erro ao atualizar série.");
+      // Em caso de erro, força sincronização
+      await fetchSeries();
     } finally {
       setLoading(false);
     }
@@ -91,5 +114,13 @@ export function useSeries() {
     }
   }
 
-  return { series, loading, erro, addSerie, updateSerie, removeSerie, fetchSeries };
+  return {
+    series,
+    loading,
+    erro,
+    addSerie,
+    updateSerie,
+    removeSerie,
+    fetchSeries,
+  };
 }

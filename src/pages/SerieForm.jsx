@@ -7,7 +7,8 @@ import api from "../services/api";
  * SerieForm
  * Formulário de cadastro/edição.
  * - Campos type="date" com InputLabelProps={{ shrink: true }} (MUI).
- * - Usa onSave (se vier via props) ou fallback direto na API.
+ * - Usa onSave (se vier via props) ou fallback direto na API com
+ *   tentativa em /series/:id e fallback em /series (id no body).
  */
 export default function SerieForm({ editData = null, onSave = null }) {
   const navigate = useNavigate();
@@ -54,14 +55,19 @@ export default function SerieForm({ editData = null, onSave = null }) {
         await onSave(editData ? { ...form, id: editData.id } : form);
       } else {
         if (editData) {
-          await api.put(`/series/${editData.id}`, form);
+          
+          try {
+            await api.put(`/series/${editData.id}`, form);
+          } catch (e) {
+            await api.put(`/series`, { id: editData.id, ...form });
+          }
         } else {
           await api.post("/series", form);
         }
       }
 
       setMensagem(editData ? "✨ Série atualizada com sucesso!" : "✨ Série cadastrada com sucesso!");
-      setTimeout(() => navigate("/lista"), 900);
+      setTimeout(() => navigate("/lista"), 700);
     } catch (err) {
       console.error(err);
       setErro("Erro ao salvar a série. Verifique os campos e tente novamente.");
@@ -70,14 +76,13 @@ export default function SerieForm({ editData = null, onSave = null }) {
 
   return (
     <section className="light-form">
-      {/* Encostado na NavBar (sem centralização vertical) e centralizado na horizontal */}
       <Box
         sx={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
           px: 2,
-          pt: 8, // espaço abaixo da AppBar; ajuste se quiser mais/menos
+          pt: 8, 
           pb: 6,
         }}
       >
@@ -85,7 +90,7 @@ export default function SerieForm({ editData = null, onSave = null }) {
           elevation={6}
           sx={{
             width: "100%",
-            maxWidth: 680, // largura confortável; ajuste se quiser
+            maxWidth: 680, 
             p: 3,
             borderRadius: 2,
             backgroundColor: "#fff",
