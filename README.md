@@ -42,14 +42,13 @@ Nesta etapa, a aplicação da Fase 1 evolui para um CRUD dinâmico com API real,
 
 ---
 
-## Como executar
+Como executar
 
-### 1) Clonar este projeto
-```bash
+1) Clonar este projeto
+
 git clone https://github.com/nataliaprs/serie-journal-fase2
 cd serie-journal-fase2
 
-```
 
 2) Instalar dependências do frontend
 
@@ -68,21 +67,16 @@ cd <pasta-onde-você-clonou>/DesenvolvimentoFrontend/serieJournal-api
 npm install
 npm start
 
-A API subirá em:
-http://localhost:5000
+A API subirá em: http://localhost:5000
 
-Observação: a baseURL do Axios está configurada em:
-
-src/services/api.js
+Observação: a baseURL do Axios está configurada em: src/services/api.js
 
 4) Rodar o frontend
 
 # dentro da pasta serie-journal-fase2
 npm run dev
 
-Acesse no navegador:
-http://localhost:5173
-
+Acesse no navegador: http://localhost:5173
 
 5) Rodar os testes
 
@@ -156,8 +150,8 @@ App.jsx
 main.jsx
 index.css
 
-``` 
-# Scripts:
+
+## Scripts
 
 {
   "scripts": {
@@ -168,10 +162,7 @@ index.css
   }
 }
 
-``` 
 
-
-```md
 ## Screenshots
 
 ![API](screenshots/API.png)
@@ -184,7 +175,6 @@ index.css
 ![Exclusão de Série](screenshots/excluirserie.png)
 ![Testes](screenshots/teste.png)
 
-``` 
 
 # Dicas e troubleshooting
 
