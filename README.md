@@ -167,23 +167,24 @@ index.css
 
 ## Screenshots
 
-![API](screenshots/API.png)
+![API](screenshots/API.png?raw=1)
 
-![Home](screenshots/home.png)
+![Home](screenshots/home.png?raw=1)
 
-![Sobre](screenshots/sobre.png)
+![Sobre](screenshots/sobre.png?raw=1)
 
-![Cadastrar](screenshots/cadastrar.png)
+![Cadastrar](screenshots/cadastrar.png?raw=1)
 
-![Editar](screenshots/editar.png)
+![Editar](screenshots/editar.png?raw=1)
 
-![Lista](screenshots/lista.png)
+![Lista](screenshots/lista.png?raw=1)
 
-![Série Atualizada](screenshots/serieatualizada.png)
+![Série Atualizada](screenshots/serieatualizada.png?raw=1)
 
-![Exclusão de Série](screenshots/excluirserie.png)
+![Exclusão de Série](screenshots/excluirserie.png?raw=1)
 
-![Testes](screenshots/teste.png)
+![Testes](screenshots/teste.png?raw=1)
+
 
 
 # Dicas e troubleshooting
