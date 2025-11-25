@@ -49,9 +49,12 @@ Nesta etapa, a aplicação da Fase 1 evolui para um CRUD dinâmico com API real,
 git clone https://github.com/nataliaprs/serie-journal-fase2
 cd serie-journal-fase2
 
+```
+
 2) Instalar dependências do frontend
 
 npm install
+
 
 3) Subir a API do professor
 A API oficial está no repositório da disciplina (branch main):
@@ -79,6 +82,7 @@ npm run dev
 
 Acesse no navegador:
 http://localhost:5173
+
 
 5) Rodar os testes
 
@@ -164,26 +168,21 @@ index.css
 }
 
 
+
+```md
 ## Screenshots
 
-![API](./screenshots/API.png)
+![API](screenshots/API.png)
+![Home](screenshots/home.png)
+![Sobre](screenshots/sobre.png)
+![Cadastrar](screenshots/cadastrar.png)
+![Editar](screenshots/editar.png)
+![Lista](screenshots/lista.png)
+![Série Atualizada](screenshots/serieatualizada.png)
+![Exclusão de Série](screenshots/excluirserie.png)
+![Testes](screenshots/teste.png)
 
-![Home](./screenshots/home.png)
-
-![Sobre](./screenshots/sobre.png)
-
-![Cadastrar](./screenshots/cadastrar.png)
-
-![Editar](./screenshots/editar.png)
-
-![Lista](./screenshots/lista.png)
-
-![Série Atualizada](./screenshots/serieatualizada.png)
-
-![Exclusão de Série](./screenshots/excluirserie.png)
-
-![Testes](./screenshots/teste.png)
-
+``` 
 
 # Dicas e troubleshooting
 
