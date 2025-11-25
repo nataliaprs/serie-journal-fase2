@@ -163,9 +163,6 @@ index.css
   }
 }
 
-```
-```
-
 ## Screenshots
 
 - API
