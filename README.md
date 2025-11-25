@@ -166,13 +166,21 @@ index.css
 ## Screenshots
 
 ![API](screenshots/API.png)
+
 ![Home](screenshots/home.png)
+
 ![Sobre](screenshots/sobre.png)
+
 ![Cadastrar](screenshots/cadastrar.png)
+
 ![Editar](screenshots/editar.png)
+
 ![Lista](screenshots/lista.png)
+
 ![Série Atualizada](screenshots/serieatualizada.png)
+
 ![Exclusão de Série](screenshots/excluirserie.png)
+
 ![Testes](screenshots/teste.png)
 
 
