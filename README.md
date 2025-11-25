@@ -165,8 +165,8 @@ index.css
 
 ## Screenshots
 
-- API rodando  
-  ![API](./screenshots/API.png)
+- API
+![API](./screenshots/API.png)
 
 - Home  
   ![Home](./screenshots/home.png)
