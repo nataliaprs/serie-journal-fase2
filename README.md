@@ -156,6 +156,7 @@ App.jsx
 main.jsx
 index.css
 
+``` 
 # Scripts:
 
 {
@@ -167,6 +168,7 @@ index.css
   }
 }
 
+``` 
 
 
 ```md
