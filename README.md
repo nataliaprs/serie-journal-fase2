@@ -164,27 +164,25 @@ index.css
 }
 
 
-
 ## Screenshots
 
-![API](screenshots/API.png?raw=1)
+![API](./screenshots/API.png)
 
-![Home](screenshots/home.png?raw=1)
+![Home](./screenshots/home.png)
 
-![Sobre](screenshots/sobre.png?raw=1)
+![Sobre](./screenshots/sobre.png)
 
-![Cadastrar](screenshots/cadastrar.png?raw=1)
+![Cadastrar](./screenshots/cadastrar.png)
 
-![Editar](screenshots/editar.png?raw=1)
+![Editar](./screenshots/editar.png)
 
-![Lista](screenshots/lista.png?raw=1)
+![Lista](./screenshots/lista.png)
 
-![Série Atualizada](screenshots/serieatualizada.png?raw=1)
+![Série Atualizada](./screenshots/serieatualizada.png)
 
-![Exclusão de Série](screenshots/excluirserie.png?raw=1)
+![Exclusão de Série](./screenshots/excluirserie.png)
 
-![Testes](screenshots/teste.png?raw=1)
-
+![Testes](./screenshots/teste.png)
 
 
 # Dicas e troubleshooting
