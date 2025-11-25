@@ -1,8 +1,8 @@
-
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SerieForm from "./SerieForm";
 
 export default function Cadastrar({ addSerie }) {
-  // Sem o <main> para não interferir no layout (fica encostado na NavBar)
-  return <SerieForm onSave={addSerie} />;
+  const navigate = useNavigate();
+  return <SerieForm onSave={addSerie} navigateFn={navigate} />;
 }

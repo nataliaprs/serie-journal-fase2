@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Box, Paper, TextField, Button } from "@mui/material";
 import api from "../services/api";
 
@@ -9,10 +8,9 @@ import api from "../services/api";
  * - Campos type="date" com InputLabelProps={{ shrink: true }} (MUI).
  * - Usa onSave (se vier via props) ou fallback direto na API com
  *   tentativa em /series/:id e fallback em /series (id no body).
+ * - NÃO depende de Router: navegação é opcional via prop navigateFn.
  */
-export default function SerieForm({ editData = null, onSave = null }) {
-  const navigate = useNavigate();
-
+export default function SerieForm({ editData = null, onSave = null, navigateFn = null }) {
   const [form, setForm] = useState({
     titulo: "",
     temporadas: "",
@@ -55,7 +53,7 @@ export default function SerieForm({ editData = null, onSave = null }) {
         await onSave(editData ? { ...form, id: editData.id } : form);
       } else {
         if (editData) {
-          
+          // Tenta /series/:id; se falhar, usa /series com id no body
           try {
             await api.put(`/series/${editData.id}`, form);
           } catch (e) {
@@ -67,7 +65,10 @@ export default function SerieForm({ editData = null, onSave = null }) {
       }
 
       setMensagem(editData ? "✨ Série atualizada com sucesso!" : "✨ Série cadastrada com sucesso!");
-      setTimeout(() => navigate("/lista"), 700);
+      // navegação opcional (não quebra testes fora do Router)
+      if (navigateFn) {
+        setTimeout(() => navigateFn("/lista"), 700);
+      }
     } catch (err) {
       console.error(err);
       setErro("Erro ao salvar a série. Verifique os campos e tente novamente.");
@@ -76,13 +77,14 @@ export default function SerieForm({ editData = null, onSave = null }) {
 
   return (
     <section className="light-form">
+      {/* Encostado na NavBar e centralizado horizontalmente */}
       <Box
         sx={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
           px: 2,
-          pt: 8, 
+          pt: 8,
           pb: 6,
         }}
       >
@@ -90,7 +92,7 @@ export default function SerieForm({ editData = null, onSave = null }) {
           elevation={6}
           sx={{
             width: "100%",
-            maxWidth: 680, 
+            maxWidth: 680,
             p: 3,
             borderRadius: 2,
             backgroundColor: "#fff",
@@ -146,7 +148,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="temporadas"
               label="Número de Temporadas"
@@ -157,7 +158,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="dataLancamento"
               label="Data de Lançamento da Temporada"
@@ -168,7 +168,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="diretor"
               label="Diretor"
@@ -178,7 +177,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="produtora"
               label="Produtora"
@@ -187,7 +185,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="categoria"
               label="Categoria"
@@ -196,7 +193,6 @@ export default function SerieForm({ editData = null, onSave = null }) {
               fullWidth
               margin="dense"
             />
-
             <TextField
               name="dataAssistiu"
               label="Data em que assistiu"

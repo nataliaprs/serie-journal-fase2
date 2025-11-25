@@ -1,10 +1,3 @@
-/**
- * SerieList
- * Lista as séries em cards compactos.
- * - Conteúdo à esquerda; ícones de ação à direita.
- * - formatDate: exibe datas no padrão dd/mm/aaaa.
- */
-
 import React from "react";
 import {
   Box,
@@ -15,17 +8,27 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate } from "react-router-dom";
 
+/**
+ * SerieList
+ * - Independente de Router: navegação é opcional via prop navigateFn (noop por padrão).
+ * - Cards compactos, conteúdo à esquerda e ações à direita.
+ */
 function formatDate(iso) {
   if (!iso) return "-";
-  const [y, m, d] = iso.split("-");
+  const [y, m, d] = String(iso).split("-");
   if (!y || !m || !d) return iso;
   return `${d}/${m}/${y}`;
 }
 
-export default function SerieList({ series, removeSerie }) {
-  const navigate = useNavigate();
+export default function SerieList({ series, removeSerie, navigateFn = () => {} }) {
+  const goEdit = (id) => {
+    try {
+      navigateFn && navigateFn(`/editar/${id}`);
+    } catch {
+      // se não tiver router em testes, ignora
+    }
+  };
 
   if (!series || series.length === 0) {
     return (
@@ -61,13 +64,7 @@ export default function SerieList({ series, removeSerie }) {
           }}
         >
           {/* Conteúdo (esquerda) */}
-          <CardContent
-            sx={{
-              flex: 1,
-              py: 1,
-              pr: 0.5,
-            }}
-          >
+          <CardContent sx={{ flex: 1, py: 1, pr: 0.5 }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
               {s.titulo}
             </Typography>
@@ -106,7 +103,7 @@ export default function SerieList({ series, removeSerie }) {
           >
             <IconButton
               aria-label="editar"
-              onClick={() => navigate(`/editar/${s.id}`)}
+              onClick={() => goEdit(s.id)}
               size="small"
               sx={{ color: "#7aa2ff" }}
             >
